@@ -1,4 +1,5 @@
 #include <stdio.h>
+
 /**
  * main - Script prints all possible combinations of single-digit numbers.
  *
