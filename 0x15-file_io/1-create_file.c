@@ -1,11 +1,11 @@
 #include "main.h"
 
 /**
- * create_file - creates a file and writes content to it
- * @filename: name of the file to be created.
- * @text_content: content to be written to the files.
+ * create_file - works by creating a files
+ * @filename: filename.
+ * @text_content: content writed in the file.
  *
- * Return: 1 on success, -1 on fialure
+ * Return: 1 if it success. -1 if it fails.
  */
 int create_file(const char *filename, char *text_content)
 {
@@ -24,7 +24,7 @@ int create_file(const char *filename, char *text_content)
 	if (!text_content)
 		text_content = "";
 
-	for (nletters = 0; text_content[nletter]; nletters++)
+	for (nletters = 0; text_content[nletters]; nletters++)
 		;
 
 	rwr = write(fd, text_content, nletters);
@@ -36,3 +36,4 @@ int create_file(const char *filename, char *text_content)
 
 	return (1);
 }
+
