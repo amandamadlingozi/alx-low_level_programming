@@ -21,14 +21,27 @@ def island_perimeter(grid):
                 # Analyzing the top
                 if i == 0 or grid[i - 1][j] == 0:
                     perimeter += 1
+
                     # Analyzing the bottom
                     if i == rows - 1 or grid[i + 1][j] == 0:
                         perimeter += 1
+
                         # Analyzing left
                         if j == 0 or grid[i][j - 1] == 0:
                             perimeter += 1
+
                             # Analyzing right
                             if j == cols - 1 or grid[i][j + 1] == 0:
                                 perimeter += 1
 
                                 return perimeter
+
+                            if __name__ == "__main__":
+                                grid = [
+                                        [0, 0, 0, 0, 0, 0],
+                                        [0, 1, 0, 0, 0, 0],
+                                        [0, 1, 0, 0, 0, 0],
+                                        [0, 1, 1, 1, 0, 0],
+                                        [0, 0, 0, 0, 0, 0]
+                                        ]
+                                print(island_perimeter(grid))
