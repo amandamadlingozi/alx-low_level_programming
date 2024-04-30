@@ -4,7 +4,7 @@
 #include "hash_tables.h"
 
 /**
- * main - Entry point
+ * main - check the code
  *
  * Return: Always EXIT_SUCCESS.
  */
@@ -32,5 +32,4 @@ int main(void)
 	shash_table_print_rev(ht);
 	shash_table_delete(ht);
 	return (EXIT_SUCCESS);
-
 }

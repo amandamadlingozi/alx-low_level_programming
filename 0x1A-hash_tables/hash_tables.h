@@ -7,7 +7,7 @@
 
 /**
  * struct hash_node_s - Node of a hash table
- * 
+ *
  * @key: The key, string
  * The key is unique in the HashTable
  * @value: The value corresponding to a key
@@ -19,6 +19,25 @@ typedef struct hash_node_s
 	char *value;
 	struct hash_node_s *next;
 } hash_node_t;
+
+/**
+ * struct shash_node_s - Node of a sorted hash table
+ *
+ * @key: The key, string
+ * The key is unique in the HashTable
+ * @value: The value corresponding to a key
+ * @next: A pointer to the next node of the List
+ * @sprev: A pointer to the previous node in the sorted order
+ * @snext: A pointer to the next node in the sorted order
+ */
+typedef struct shash_node_s
+{
+	char *key;
+	char *value;
+	struct shash_node_s *next;
+	struct shash_node_s *sprev;
+	struct shash_node_s *snext;
+} shash_node_t;
 
 /**
  * struct hash_table_s - Hash table data structure
@@ -34,8 +53,23 @@ typedef struct hash_table_s
 	hash_node_t **array;
 } hash_table_t;
 
-/* Function prototypes */
-/* Function prototypes */
+/**
+ * struct shash_table_s - Sorted hash table data structure
+ *
+ * @size: The size of the array
+ * @array: An array of size @size, each entry pointing to the first node of a linked list
+ * @shead: Pointer to the head of the sorted linked list
+ * @stail: Pointer to the tail of the sorted linked list
+ */
+typedef struct shash_table_s
+{
+    unsigned long int size;
+    shash_node_t **array;
+    shash_node_t *shead;
+    shash_node_t *stail;
+} shash_table_t;
+
+/* Function prototypes for hash_table_t */
 hash_table_t *hash_table_create(unsigned long int size);
 unsigned long int hash_djb2(const unsigned char *str);
 unsigned long int key_index(const unsigned char *key, unsigned long int size);
@@ -44,23 +78,12 @@ char *hash_table_get(const hash_table_t *ht, const char *key);
 void hash_table_print(const hash_table_t *ht);
 void hash_table_delete(hash_table_t *ht);
 
-/* hash_table_create.c */
-hash_table_t *hash_table_create(unsigned long int size);
-
-/* hash_table_set.c */
-int hash_table_set(hash_table_t *ht, const char *key, const char *value);
-
-/* hash_table_get.c */
-char *hash_table_get(const hash_table_t *ht, const char *key);
-
-/* hash_table_print.c */
-void hash_table_print(const hash_table_t *ht);
-void hash_table_print_rev(const hash_table_t *ht);
-
-/* hash_table_delete.c */
-void hash_table_delete(hash_table_t *ht);
-
-/* Other helper functions */
-unsigned long int key_index(const unsigned char *key, unsigned long int size);
+/* Function prototypes for shash_table_t */
+shash_table_t *shash_table_create(unsigned long int size);
+int shash_table_set(shash_table_t *ht, const char *key, const char *value);
+void shash_table_print(const shash_table_t *ht);
+void shash_table_print_rev(const shash_table_t *ht);
+void shash_table_delete(shash_table_t *ht);
+int shash_table_add(shash_table_t *ht, unsigned long int index, shash_node_t *new_node);
 
 #endif /* HASH_TABLES_H */
